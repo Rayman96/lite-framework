@@ -28,7 +28,6 @@ def epoch_general_cifar10(dataloader, model, loss_fn=nn.SoftmaxLoss(), opt=None)
         avg_loss: average loss over dataset
     """
     np.random.seed(4)
-    ### BEGIN YOUR SOLUTION
     correct, loss_sum, n_step, n_samplers = 0., 0., 0, 0
     if opt:
         model.train()
@@ -48,7 +47,6 @@ def epoch_general_cifar10(dataloader, model, loss_fn=nn.SoftmaxLoss(), opt=None)
         n_samplers += X.shape[0]
 
     return correct / n_samplers, loss_sum / n_step
-    ### END YOUR SOLUTION
 
 
 def train_cifar10(model, dataloader, n_epochs=1, optimizer=ndl.optim.Adam,
@@ -70,13 +68,11 @@ def train_cifar10(model, dataloader, n_epochs=1, optimizer=ndl.optim.Adam,
         avg_loss: average loss over dataset from last epoch of training
     """
     np.random.seed(4)
-    ### BEGIN YOUR SOLUTION
     opt = optimizer(model.parameters(), lr=lr, weight_decay=weight_decay)
     for _ in range(n_epochs):
         train_acc, train_loss = epoch_general_cifar10(dataloader, model, loss_fn=loss_fn(), opt=opt)
         # print(train_acc, train_loss)
     return train_acc, train_loss
-    ### END YOUR SOLUTION
 
 
 def evaluate_cifar10(model, dataloader, loss_fn=nn.SoftmaxLoss):
@@ -93,9 +89,7 @@ def evaluate_cifar10(model, dataloader, loss_fn=nn.SoftmaxLoss):
         avg_loss: average loss over dataset
     """
     np.random.seed(4)
-    ### BEGIN YOUR SOLUTION
     return epoch_general_cifar10(dataloader, model, loss_fn())
-    ### END YOUR SOLUTION
 
 
 
@@ -121,7 +115,6 @@ def epoch_general_ptb(data, model, seq_len=40, loss_fn=nn.SoftmaxLoss(), opt=Non
         avg_loss: average loss over dataset
     """
     np.random.seed(4)
-    ### BEGIN YOUR SOLUTION
     correct, loss_sum, n_step, n_samplers = 0., 0., 0, 0
     if opt:
         model.train()
@@ -153,7 +146,6 @@ def epoch_general_ptb(data, model, seq_len=40, loss_fn=nn.SoftmaxLoss(), opt=Non
 
 
     return correct / n_samplers, loss_sum / n_samplers
-    ### END YOUR SOLUTION
 
 
 def train_ptb(model, data, seq_len=40, n_epochs=1, optimizer=ndl.optim.SGD,
@@ -178,13 +170,11 @@ def train_ptb(model, data, seq_len=40, n_epochs=1, optimizer=ndl.optim.SGD,
         avg_loss: average loss over dataset from last epoch of training
     """
     np.random.seed(4)
-    ### BEGIN YOUR SOLUTION
     opt = optimizer(model.parameters(), lr=lr, weight_decay=weight_decay)
     for _ in range(n_epochs):
         train_acc, train_loss = epoch_general_ptb(data, model, seq_len=seq_len, loss_fn=loss_fn(), opt=opt, clip=clip, device=device, dtype=dtype)
         # print(train_acc, train_loss)
     return train_acc, train_loss
-    ### END YOUR SOLUTION
 
 
 def evaluate_ptb(model, data, seq_len=40, loss_fn=nn.SoftmaxLoss,
@@ -203,9 +193,7 @@ def evaluate_ptb(model, data, seq_len=40, loss_fn=nn.SoftmaxLoss,
         avg_loss: average loss over dataset
     """
     np.random.seed(4)
-    ### BEGIN YOUR SOLUTION
     return epoch_general_ptb(data, model, seq_len=seq_len, loss_fn=loss_fn(), device=device, dtype=dtype)
-    ### END YOUR SOLUTION
 
 
 if __name__ == "__main__":

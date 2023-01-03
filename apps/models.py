@@ -21,7 +21,6 @@ class ConvBN(ndl.nn.Module):
 class ResNet9(ndl.nn.Module):
     def __init__(self, device=None, dtype="float32"):
         super().__init__()
-        ### BEGIN YOUR SOLUTION ###
         # NOTE: add device and dtype argument!
         self.layers = nn.Sequential(
             ConvBN(3, 16, 7, 4, device=device, dtype=dtype),
@@ -45,12 +44,9 @@ class ResNet9(ndl.nn.Module):
             nn.ReLU(),
             nn.Linear(128, 10, device=device, dtype=dtype)
         )
-        ### END YOUR SOLUTION
 
     def forward(self, x):
-        ### BEGIN YOUR SOLUTION
         return self.layers(x)
-        ### END YOUR SOLUTION
 
 
 class LanguageModel(nn.Module):
@@ -67,7 +63,6 @@ class LanguageModel(nn.Module):
         num_layers: Number of layers in RNN or LSTM
         """
         super(LanguageModel, self).__init__()
-        ### BEGIN YOUR SOLUTION
         self.embedding_size = embedding_size
         self.output_size = output_size
         self.hidden_size = hidden_size
@@ -80,7 +75,6 @@ class LanguageModel(nn.Module):
         else:
             raise NotImplementedError()
         self.linear = nn.Linear(hidden_size, output_size, device=device, dtype=dtype)
-        ### END YOUR SOLUTION
 
     def forward(self, x, h=None):
         """
@@ -95,13 +89,11 @@ class LanguageModel(nn.Module):
         h of shape (num_layers, bs, hidden_size) if using RNN,
             else h is tuple of (h0, c0), each of shape (num_layers, bs, hidden_size)
         """
-        ### BEGIN YOUR SOLUTION
         seq_len, bs = x.shape
         x = self.embedding(x)   # (seq_len, bs, embedding_size)
         x, h_ = self.model(x, h) # (seq_len, bs, hidden_size)    
         x = self.linear(x.reshape((seq_len*bs, self.hidden_size)))  
         return x, h_
-        ### END YOUR SOLUTION
 
 
 if __name__ == "__main__":
