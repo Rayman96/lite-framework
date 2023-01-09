@@ -412,11 +412,6 @@ def topo_sort_dfs(node, visited, topo_order):
     topo_order.append(node)
 
 
-##############################
-####### Helper Methods #######
-##############################
-
-
 def sum_node_list(node_list):
     """Custom sum function in order to avoid create redundant nodes in Python sum implementation."""
     from operator import add
