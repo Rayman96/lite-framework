@@ -142,7 +142,7 @@ class Tanh(Module):
     def forward(self, x: Tensor) -> Tensor:
 
         return ops.tanh(x)
-
+ 
 
 class Sigmoid(Module):
     def __init__(self):
